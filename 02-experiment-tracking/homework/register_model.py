@@ -32,9 +32,9 @@ def load_pickle(filename):
 
 
 def train_and_log_model(data_path, params):
-    X_train, y_train = load_pickle(os.path.join(data_path, "X_train.pkl"))
-    X_valid, y_valid = load_pickle(os.path.join(data_path, "X_valid.pkl"))
-    X_test, y_test = load_pickle(os.path.join(data_path, "X_test.pkl"))
+    X_train, y_train = load_pickle(os.path.join(data_path, "train.pkl"))
+    X_valid, y_valid = load_pickle(os.path.join(data_path, "valid.pkl"))
+    X_test, y_test = load_pickle(os.path.join(data_path, "test.pkl"))
 
     with mlflow.start_run():
         params = space_eval(SPACE, params)
@@ -65,11 +65,17 @@ def run(data_path, log_top):
 
     # select the model with the lowest test RMSE
     experiment = client.get_experiment_by_name(EXPERIMENT_NAME)
-    # best_run = client.search_runs( ...  )[0]
+    best_run = client.search_runs(
+        experiment_ids=experiment.experiment_id,
+        run_view_type=ViewType.ACTIVE_ONLY,
+        max_results=1,
+        order_by=["metrics.test_rmse ASC"]
+    )
 
     # register the best model
-    # mlflow.register_model( ... )
-
+    run_id = best_run[0].info.run_id
+    model_uri = f"runs:/{run_id}/model"
+    mlflow.register_model(model_uri = model_uri, name = "nyc-taxi-randomforest" )
 
 if __name__ == '__main__':
 
@@ -82,6 +88,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "--top_n",
         default=5,
+        type=int,
         help="the top 'top_n' models will be evaluated to decide which model to promote."
     )
     args = parser.parse_args()
