@@ -4,10 +4,17 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
+import mlflow
+
+from prefect import flow, task
+from prefect.task_runners import SequentialTaskRunner
+
+@task
 def read_data(path):
     df = pd.read_parquet(path)
     return df
 
+@task
 def prepare_features(df, categorical, train=True):
     df['duration'] = df.dropOff_datetime - df.pickup_datetime
     df['duration'] = df.duration.dt.total_seconds() / 60
@@ -22,6 +29,7 @@ def prepare_features(df, categorical, train=True):
     df[categorical] = df[categorical].fillna(-1).astype('int').astype('str')
     return df
 
+@task
 def train_model(df, categorical):
 
     train_dicts = df[categorical].to_dict(orient='records')
@@ -39,6 +47,7 @@ def train_model(df, categorical):
     print(f"The MSE of training is: {mse}")
     return lr, dv
 
+@task
 def run_model(df, categorical, dv, lr):
     val_dicts = df[categorical].to_dict(orient='records')
     X_val = dv.transform(val_dicts) 
@@ -49,6 +58,7 @@ def run_model(df, categorical, dv, lr):
     print(f"The MSE of validation is: {mse}")
     return
 
+@flow(task_runner=SequentialTaskRunner())
 def main(train_path: str = './data/fhv_tripdata_2021-01.parquet', 
            val_path: str = './data/fhv_tripdata_2021-02.parquet'):
 
