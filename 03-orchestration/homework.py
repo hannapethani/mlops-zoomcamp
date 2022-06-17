@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error
 
 import mlflow
 
-from prefect import flow, task
+from prefect import flow, task 
 from prefect.task_runners import SequentialTaskRunner
 from prefect import get_run_logger
 from prefect.deployments import DeploymentSpec
@@ -142,13 +142,14 @@ def main(date="2021-08-15"): # train_path: str = './data/fhv_tripdata_2021-01.pa
 
     print(glob.glob('./models/*'))
 
+main()
+
 DeploymentSpec(
     flow=main,
     name="cron-schedule-deployment",
+    flow_location="./homework.py",
     flow_runner=SubprocessFlowRunner(),
     schedule=CronSchedule(
         cron="0 9 15 * *",
         timezone="America/New_York")
 )
-
-main()
