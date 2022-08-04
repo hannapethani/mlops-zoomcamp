@@ -7,6 +7,8 @@
 </a>
 
 
+[Slides](https://drive.google.com/file/d/1wcMU75ZcNNJie4ELjsKPkITIL93wHykt/view?usp=sharing)
+
 
 ## 5.2 Setting up the environment
 
@@ -42,7 +44,17 @@
 
 ## 5.6 Homework
 
-COMING SOON
+More information here: [homework.md](homework.md). Please also give us feedback for this week videos using 
+[this form](https://forms.gle/fb7dJKjyb1oeNeAz9) 
+
+
+## Notes
+
+Did you take notes? Add them here:
+
+* [Week 5 notes by M. Ayoub C.](https://gist.github.com/Qfl3x/aa6b1bec35fb645ded0371c46e8aafd1)
+* [week 5: Monitoring notes Ayoub.B](https://github.com/ayoub-berdeddouch/mlops-journey/blob/main/monitoring-05.md)
+* Send a PR, add your notes above this line
 
 
 
@@ -58,7 +70,7 @@ You need following tools installed:
 
 Note: all actions expected to be executed in repo folder.
 
-- Create virtual environment and activate it (eg. `python -m venv venv && ./venv/bin/activate`)
+- Create virtual environment and activate it (eg. `python -m venv venv && source ./venv/bin/activate`)
 - Install required packages `pip install -r requirements.txt`
 - Run `python prepare.py` for downloading datasets
 
@@ -68,7 +80,7 @@ Note: all actions expected to be executed in repo folder.
 
 To start all required services, execute:
 ```bash
-docker compose up
+docker-compose up
 ```
 
 It will start following services:
