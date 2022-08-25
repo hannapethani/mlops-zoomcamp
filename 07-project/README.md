@@ -12,14 +12,14 @@ Remember that to pass the project, you must evaluate 3 peers. If you don't do th
 
 Project:
 
-* Form: TBA
-* Deadline: 15 August, 23:00 CEST
+* Form: https://forms.gle/7UmQkK4BBxqdgMDp9
+* Deadline: 22 August, 23:00 CEST
 
 Peer reviewing:
 
-* Peer review assignments: TBA
-* Form: TBA
-* Deadline: 22 August, 23:00 CEST
+* Peer review assignments: [link](https://docs.google.com/spreadsheets/d/e/2PACX-1vQYTps829bmaN-aaJPiBUc3UwtN3e_llI44DKv-rQDsmVRMS1No7XWQqOyNI4ZbFbIvN351Q-G6edCP/pubhtml) (tab "project 1")
+* Form: https://forms.gle/KaBMoYhmfeEFmiWb7
+* Deadline: 29 August, 23:00 CEST
 
 Project feedback: TBA
 
@@ -28,13 +28,13 @@ Project feedback: TBA
 
 Project:
 
-* Form: TBA
+* Form: https://forms.gle/aj8LHkY7PrWG9XzW6
 * Deadline: 5 September, 23:00 CEST
 
 Peer reviewing:
 
 * Peer review assignments: TBA
-* Form: TBA
+* Form: https://forms.gle/BeQ2HCohrM3puKf26
 * Deadline: 12 September, 23:00 CEST
 
 Project feedback: TBA
@@ -81,7 +81,7 @@ If you're not certain about some tools, ask in Slack.
     * 2 points: Problem is well described and it's clear what the problem the project solves
 * Cloud
     * 0 points: Cloud is not used, things run only locally
-    * 2 points: The project is developed on the cloud
+    * 2 points: The project is developed on the cloud OR the project is deployed to Kubernetes or similar container management platforms
     * 4 points: The project is developed on the cloud and IaC tools are used for provisioning the infrastructure
 * Experiment tracking and model registry
     * 0 points: No experiment tracking or model registry
@@ -102,7 +102,7 @@ If you're not certain about some tools, ask in Slack.
 * Reproducibility
     * 0 points: No instructions how to run code at all
     * 2 points: Some instructions are there, but they are not complete
-    * 4 points: Instructions are clear, it's easy to run the code, and the code works
+    * 4 points: Instructions are clear, it's easy to run the code, and the code works. The version for all the dependencies are specified.
 * Best practices
     * [ ] There are unit tests (1 point)
     * [ ] There is an integration test (1 point)
